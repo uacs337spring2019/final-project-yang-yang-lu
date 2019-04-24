@@ -40,6 +40,99 @@ file descriiption:
 					// loop through responseText to get data to be displayed
 					var result = JSON.parse(responseText);
 					console.log(result);
+					var total = 0;
+					result.forEach(entry => {
+						total += entry.amount;
+					});
+					console.log("total = " + total);
+					
+					document.getElementById("totalexpense").textContent = "$" + total;
+					
+					var arr = [];
+					
+					result.forEach(entry => {
+						if (arr[entry.categories] == undefined){
+							arr[entry.categories] = entry.amount;
+						} else {
+							arr[entry.categories] += entry.amount;
+						}
+					});
+					
+					console.log(arr);
+					
+					var percent = [];
+					
+					for(var idx in arr){
+						console.log(idx);
+						var y = arr[idx]/total*100;
+						percent.push({y: y, label: idx});
+					}
+					
+					console.log(percent);
+					
+					var chart = new CanvasJS.Chart("piechart", {
+						animationEnabled: true,
+						title: {
+							text: "Expense Categories"
+						},
+						data: [{
+							type: "pie",
+							startAngle: 240,
+							yValueFormatString: "##0.00\"%\"",
+							indexLabel: "{label} {y}",
+							dataPoints: percent
+						}]
+					});
+					
+					chart.render();
+					
+					var dateArr = [];
+					
+					result.forEach(entry => {
+						var curDate = new Date(entry.date);
+						console.log(curDate.getMonth());
+						if (dateArr[curDate.getMonth()] == undefined){
+							dateArr[curDate.getMonth()] = entry.amount;
+						} else {
+							dateArr[curDate.getMonth()] += entry.amount;
+						}
+					});
+					
+					console.log(dateArr);
+					
+					var monthly = [];
+					var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+					
+					for (var i = 0; i < 12; i++) {
+						var y;
+						if (dateArr[i] == undefined){
+							y = 0;
+						} else {
+							y = dateArr[i];
+						}
+						monthly.push({y: y, label: month[i]});
+					}
+					
+					console.log(monthly);
+					
+					var chart = new CanvasJS.Chart("barchart", {
+						animationEnabled: true,
+						theme: "light2", // "light1", "light2", "dark1", "dark2"
+						title:{
+							text: "Monthly Expense Total"
+						},
+						axisY: {
+							title: "Amount($)"
+						},
+						axisX: {
+							title: "Months"
+						},
+						data: [{        
+							type: "column",
+							dataPoints: monthly
+						}]
+					});
+					chart.render();
 				}
 			})
 			.catch(function(error) {
