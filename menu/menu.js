@@ -21,6 +21,8 @@ file descriiption:
 		// ask for the current url to run query with
 		const url = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
 
+		// const url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname;
+
 		const user = window.location.href.split("?")[1];
 
 		const query = "?command=addExpense&" + user;
@@ -48,6 +50,8 @@ file descriiption:
 		console.log("gotoSummary");
 		// ask for the current url to run query with
 		const url = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
+
+		// const url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname;
 
 		const user = window.location.href.split("?")[1];
 
@@ -77,6 +81,8 @@ file descriiption:
 		
 		// ask for the current url to run query with
 		const url = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
+
+		// const url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname;
 
 		const user = window.location.href.split("?")[1];
 

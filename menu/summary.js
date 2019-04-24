@@ -10,7 +10,41 @@ file descriiption:
 (function() {
 	
 	window.onload = function() {
+		initialize();
 		document.getElementById("back").onclick = goBack;
+	}
+	
+	function initialize(){
+		console.log("summary initialize");
+		
+		// ask for the current url to run query with
+		const url = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
+
+		// const url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname;
+
+		const user = window.location.href.split("?")[1];
+
+		const query = "?command=summaryInit&" + user;
+
+		console.log("client query = " + query);
+
+		console.log("serverUrl = " + url);
+
+		fetch(url + query)
+			.then(checkStatus)
+			.then(function(responseText) {
+				console.log("responseText = " + responseText);
+				if (responseText == "failure"){
+					console.log("invalid access");
+				} else {
+					// loop through responseText to get data to be displayed
+					var result = JSON.parse(responseText);
+					console.log(result);
+				}
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
 	}
 	
 	function goBack() {
@@ -18,6 +52,8 @@ file descriiption:
 		
 		// ask for the current url to run query with
 		const url = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
+
+		// const url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname;
 
 		const user = window.location.href.split("?")[1];
 
