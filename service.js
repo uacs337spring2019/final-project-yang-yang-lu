@@ -32,9 +32,9 @@ file descriiption:
 	// var secret = JSON.parse(secretFile);
 
 	// require mysql
-	const mysql = require("mysql");
+	// const mysql = require("mysql");
 
-	console.log(process.env.DATABASE_URL);
+	// console.log(process.env.DATABASE_URL);
 	// var con = mysql.createConnection({
 		// host: secret.hostname,
 		// user: secret.username,
@@ -43,7 +43,7 @@ file descriiption:
 	// });
 
 
-	check connection
+	// check connection
 	// con.connect(function(err) {
 		// if (err) throw err;
 		// console.log("Connected!");
