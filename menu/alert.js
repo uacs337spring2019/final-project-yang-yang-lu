@@ -17,7 +17,7 @@ file descriiption:
 		console.log("goBack");
 		
 		// ask for the current url to run query with
-		const url = window.location.protocol + window.location.hostname + ":" + window.location.port + window.location.pathname;
+		const url = window.location.protocol + window.location.hostname + window.location.pathname;
 
 		const user = window.location.href.split("?")[1];
 
