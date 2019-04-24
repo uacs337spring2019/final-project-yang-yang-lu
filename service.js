@@ -68,7 +68,7 @@ file descriiption:
 			case "login": {
 				const password = req.query.password;
 				if (password == "password"){
-					res.send("success");
+					res.send(process.env.DATABASE_URL);
 				} else {
 					res.send("failure");
 				}
