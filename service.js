@@ -34,22 +34,21 @@ file descriiption:
 	// require mysql
 	const mysql = require("mysql");
 
-	var con = mysql.createConnection(process.env.CLEARDB_DATABASE_URL);
-	// var con = mysql.createConnection({
+	// var pool = mysql.createPool({
 		// host: secret.hostname,
 		// user: secret.username,
 		// password: secret.password,
 		// database: secret.database
 	// });
+	
+	var pool = mysql.createPool(process.env.CLEARDB_DATABASE_URL);
 
-
-	// check connection
-	con.connect(function(err) {
+	// connect with pool
+	pool.getConnection(function(err, connection) {
 		if (err) throw err;
-		console.log("Connected!");
+		console.log("connected");
 	});
 	
-	// use public so localhost works
 	app.use(express.static(__dirname));
 	
 	app.get('/', function(req, res){
@@ -162,5 +161,6 @@ file descriiption:
 		
 	});
 	
-	app.listen(process.env.PORT);
+	// app.listen(process.env.PORT);
+	app.listen(3000);
 })();
