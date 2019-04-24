@@ -28,8 +28,8 @@ file descriiption:
 		next();
 	});
 	
-	var secretFile = fs.readFileSync('secret.json');
-	var secret = JSON.parse(secretFile);
+	// var secretFile = fs.readFileSync('secret.json');
+	// var secret = JSON.parse(secretFile);
 
 	// require mysql
 	const mysql = require("mysql");
