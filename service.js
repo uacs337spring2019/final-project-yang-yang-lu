@@ -34,7 +34,7 @@ file descriiption:
 	// require mysql
 	const mysql = require("mysql");
 
-	console.log(process.env.DATABASE_URL);
+	console.log(process.env.CLEARDB_DATABASE_URL);
 	// var con = mysql.createConnection({
 		// host: secret.hostname,
 		// user: secret.username,
