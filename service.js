@@ -50,13 +50,13 @@ file descriiption:
 	// use public so localhost works
 	app.use(express.static("."));
 	
-	app.get('/', function(req, res){
+	app.get('/expressapp2019.herokuapp.com/', function(req, res){
 		res.header("Access-Control-Allow-Origin", "*");
 		console.log("login page " + JSON.stringify(req.query));
 		res.redirect("/login");
 	});
 	
-	app.get('/login', function(req, res){
+	app.get('/expressapp2019.herokuapp.com/login', function(req, res){
 		res.header("Access-Control-Allow-Origin", "*");
 		console.log("login page" + JSON.stringify(req.query));
 		
@@ -79,7 +79,7 @@ file descriiption:
 		}
 	});
 	
-	app.get('/menu', function(req, res){
+	app.get('/expressapp2019.herokuapp.com/menu', function(req, res){
 		res.header("Access-Control-Allow-Origin", "*");
 		console.log("menu page " + JSON.stringify(req.query));
 		
@@ -105,7 +105,7 @@ file descriiption:
 		}
 	});
 	
-	app.get('/menu/addExpense', function(req, res){
+	app.get('/expressapp2019.herokuapp.com/menu/addExpense', function(req, res){
 		res.header("Access-Control-Allow-Origin", "*");
 		console.log("addExpense page " + JSON.stringify(req.query));
 		
@@ -123,7 +123,7 @@ file descriiption:
 		}
 	});
 	
-	app.get('/menu/summary', function(req, res){
+	app.get('/expressapp2019.herokuapp.com/menu/summary', function(req, res){
 		res.header("Access-Control-Allow-Origin", "*");
 		console.log("summary page " + JSON.stringify(req.query));
 		
@@ -141,7 +141,7 @@ file descriiption:
 		}
 	});
 	
-	app.get('/menu/alert', function(req, res){
+	app.get('/expressapp2019.herokuapp.com/menu/alert', function(req, res){
 		res.header("Access-Control-Allow-Origin", "*");
 		console.log("alert page " + JSON.stringify(req.query));
 		
