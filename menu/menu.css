@@ -1,0 +1,19 @@
+/*
+Name: Yang Yang Lu
+Section: CSC337 001
+HW description:
+file descriiption:
+*/
+
+.inputs {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	padding-top: 15rem;
+}
+
+.inputs > input {
+	margin: 1rem;
+	height: 50px;
+	width: 20%;
+}
