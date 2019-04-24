@@ -48,7 +48,7 @@ file descriiption:
 	// });
 	
 	// use public so localhost works
-	app.use(express.static("."));
+	app.use(express.static(__dirname));
 	
 	app.get('/', function(req, res){
 		res.header("Access-Control-Allow-Origin", "*");
