@@ -28,13 +28,13 @@ file descriiption:
 		next();
 	});
 	
-	// var secretFile = fs.readFileSync('secret.json');
-	// var secret = JSON.parse(secretFile);
+	var secretFile = fs.readFileSync('secret.json');
+	var secret = JSON.parse(secretFile);
 
 	// require mysql
 	const mysql = require("mysql");
 
-	console.log(process.env.CLEARDB_DATABASE_URL);
+	var con = mysql.createConnection(process.env.CLEARDB_DATABASE_URL);
 	// var con = mysql.createConnection({
 		// host: secret.hostname,
 		// user: secret.username,
@@ -44,10 +44,10 @@ file descriiption:
 
 
 	// check connection
-	// con.connect(function(err) {
-		// if (err) throw err;
-		// console.log("Connected!");
-	// });
+	con.connect(function(err) {
+		if (err) throw err;
+		console.log("Connected!");
+	});
 	
 	// use public so localhost works
 	app.use(express.static(__dirname));
