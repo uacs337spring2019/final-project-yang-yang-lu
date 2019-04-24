@@ -28,24 +28,26 @@ file descriiption:
 		next();
 	});
 	
-	var secretFile = fs.readFileSync('secret.json');
-	var secret = JSON.parse(secretFile);
+	// var secretFile = fs.readFileSync('secret.json');
+	// var secret = JSON.parse(secretFile);
 
 	// require mysql
 	const mysql = require("mysql");
 
-	var con = mysql.createConnection({
-		host: secret.hostname,
-		user: secret.username,
-		password: secret.password,
-		database: secret.database
-	});
+	console.log(process.env.DATABASE_URL);
+	// var con = mysql.createConnection({
+		// host: secret.hostname,
+		// user: secret.username,
+		// password: secret.password,
+		// database: secret.database
+	// });
 
-	// check connection
-	con.connect(function(err) {
-		if (err) throw err;
-		console.log("Connected!");
-	});
+
+	check connection
+	// con.connect(function(err) {
+		// if (err) throw err;
+		// console.log("Connected!");
+	// });
 	
 	// use public so localhost works
 	app.use(express.static(__dirname));
