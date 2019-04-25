@@ -58,6 +58,52 @@ file descriiption:
 	});
 
 	// post to write to mysql
+	app.post('/register', jsonParser, function(req, res) { 
+		res.header("Access-Control-Allow-Origin", "*");
+		console.log("req.body.command = " + req.body.command);
+		console.log("req.body = " + JSON.stringify(req.body));
+
+		const command = req.body.command;
+
+		switch(command) {
+			case "register": {
+				var username = req.body.username;
+				var password = req.body.password;
+				
+				var cols = "username, password";
+				
+				var query = 'INSERT INTO user ('
+				+ cols + ')'
+				+ 'VALUES (\''
+				+ username + '\', \'' + password + '\')';
+				
+				// connect with pool
+				pool.getConnection(function(err, connection) {
+					if (err) throw err;
+					console.log("connected");
+					
+					connection.query(query, function(err, result) {
+						connection.release();
+						if (err) {
+							res.send("failure");
+							throw err;
+						}
+						
+						console.log("1 record inserted: " + query);
+						res.send("success");
+					});
+				});
+				
+				break;
+			}
+			default: {
+				console.log("invalid command");
+				break;
+			}
+		}
+	});
+
+	// post to write to mysql
 	app.post('/menu/addExpense', jsonParser, function(req, res) { 
 		res.header("Access-Control-Allow-Origin", "*");
 		console.log("req.body.command = " + req.body.command);
@@ -195,12 +241,30 @@ file descriiption:
 				});
 				break;
 			}
-			case "summaryInit": {
-				
+			case "gotoRegister": {
+				res.send("success");
 				break;
 			}
 			default: {
 				res.sendFile(__dirname + "/login.html");
+				break;
+			}
+		}
+	});
+	
+	app.get('/register', function(req, res){
+		res.header("Access-Control-Allow-Origin", "*");
+		console.log("register" + JSON.stringify(req.query));
+		
+		const command = req.query.command;
+		
+		switch(command){
+			case "register": {
+				
+				break;
+			}
+			default: {
+				res.sendFile(__dirname + "/register.html");
 				break;
 			}
 		}

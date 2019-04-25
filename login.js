@@ -11,6 +11,35 @@ file descriiption:
 	
 	window.onload = function() {
 		document.getElementById("login").onclick = login;
+		document.getElementById("register").onclick = gotoRegister;
+	}
+	
+	function gotoRegister() {
+		console.log("gotoRegister");
+
+		// ask for the current url to run query with
+		const url = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
+		
+		// const url = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname;
+		const query = "?command=gotoRegister";
+
+		console.log("client query = " + query);
+
+		console.log("serverUrl = " + url);
+
+		fetch(url + query)
+			.then(checkStatus)
+			.then(function(responseText) {
+				console.log("responseText = " + responseText);
+				if (responseText == "success"){
+					window.location.href = '/register';
+				} else {
+					console.log("username or password is incorrect, or username does not exist");
+				}
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
 	}
 	
 	function login() {
